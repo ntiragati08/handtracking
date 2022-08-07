@@ -4,19 +4,27 @@ import av
 import mediapipe as mp
 import streamlit as st
 from streamlit_webrtc import webrtc_streamer, WebRtcMode, RTCConfiguration
+from aiortc.contrib.media import MediaRecorder
+
+def main():
+    def recorder_factory():
+        return MediaRecorder("record.wav")
+
+    webrtc_streamer(
+        key="sendonly-audio",
+        mode=WebRtcMode.SENDONLY,
+        in_recorder_factory=recorder_factory,
+        client_settings=ClientSettings(
+            rtc_configuration={
+                "iceServers": [{"urls": ["stun:stun.l.google.com:19302"]}]
+            },
+            media_stream_constraints={
+                "audio": True,
+                "video": False,
+            },
+        ),
+    )
 
 
-RTC_CONFIGURATION = RTCConfiguration(
-    {"iceServers": [{"urls": ["stun:stun.l.google.com:19302"]}]}
-)
-
-
-webrtc_ctx = webrtc_streamer(
-    key="WYH",
-    mode=WebRtcMode.SENDRECV,
-    rtc_configuration=RTC_CONFIGURATION,
-    media_stream_constraints={"video": False, "audio": True},
-    async_processing=True,
-)
-
-st.write(type(webrtc_ctx))
+if __name__ == "__main__":
+    main()
