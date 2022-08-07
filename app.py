@@ -17,3 +17,5 @@ webrtc_ctx = webrtc_streamer(
     media_stream_constraints={"video": False, "audio": True},
     async_processing=True,
 )
+
+st.write(type(webrtc_ctx))
