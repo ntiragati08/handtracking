@@ -4,7 +4,7 @@ import av
 import mediapipe as mp
 from streamlit_webrtc import webrtc_streamer, WebRtcMode, RTCConfiguration
 
-mp_drawing = mp.solutions.drawing_utils
+"""mp_drawing = mp.solutions.drawing_utils
 mp_drawing_styles = mp.solutions.drawing_styles
 mp_hands = mp.solutions.hands
 hands = mp_hands.Hands(
@@ -29,26 +29,26 @@ def process(image):
             mp_hands.HAND_CONNECTIONS,
             mp_drawing_styles.get_default_hand_landmarks_style(),
             mp_drawing_styles.get_default_hand_connections_style())
-    return cv2.flip(image, 1)
+    return cv2.flip(image, 1)"""
 
 
 RTC_CONFIGURATION = RTCConfiguration(
     {"iceServers": [{"urls": ["stun:stun.l.google.com:19302"]}]}
 )
 
-class VideoProcessor:
+"""class VideoProcessor:
     def recv(self, frame):
         img = frame.to_ndarray(format="bgr24")
 
         img = process(img)
 
-        return av.VideoFrame.from_ndarray(img, format="bgr24")
+        return av.VideoFrame.from_ndarray(img, format="bgr24")"""
 
 webrtc_ctx = webrtc_streamer(
     key="WYH",
     mode=WebRtcMode.SENDRECV,
     rtc_configuration=RTC_CONFIGURATION,
     media_stream_constraints={"video": False, "audio": True},
-    video_processor_factory=VideoProcessor,
+    #video_processor_factory=VideoProcessor,
     async_processing=True,
 )
