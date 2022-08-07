@@ -19,7 +19,7 @@ webrtc_streamer(
         },
         media_stream_constraints={
             "audio": True,
-            "video": True,
+            "video": False,
         },
     ),
 )
