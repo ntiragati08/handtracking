@@ -12,7 +12,7 @@ def recorder_factory():
 webrtc_streamer(
     key="sendonly-audio",
     mode=WebRtcMode.SENDONLY,
-    in_recorder_factory=recorder_factory,
+    in_recorder_factory=recorder_factory();
     client_settings=ClientSettings(
         rtc_configuration={
             "iceServers": [{"urls": ["stun:stun.l.google.com:19302"]}]
