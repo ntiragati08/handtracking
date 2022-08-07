@@ -3,7 +3,7 @@ import numpy as np
 import av
 import mediapipe as mp
 import streamlit as st
-from streamlit_webrtc import webrtc_streamer, WebRtcMode, RTCConfiguration
+from streamlit_webrtc import webrtc_streamer, WebRtcMode, RTCConfiguration,ClientSettings
 from aiortc.contrib.media import MediaRecorder
 
 def recorder_factory():
